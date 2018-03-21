@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1px" width="1000px">
+    <tr>
+        <td>编号</td>
+        <td>用户名</td>
+        <td>年龄</td>
+        <td>if</td>
+        <td>订单状态</td>
+        <td>select</td>
+        <td>性别</td>
+    </tr>
+    <tr th:each="order : ${order}">
+        <td th:text="${order.id}"></td>
+        <td th:text="${order.username}"></td>
+        <td><input type="text" th:value="${order.age}"></td>
+        <td><input type="radio" th:if="${order.ifTest % 2 == 0}"/></td>
+        <td th:switch="${order.orderStatus}">
+            <span th:case="1">已支付</span>
+            <span th:case="2">未支付</span>
+            <span th:case="3">已完成</span>
+        </td>
+        <td>
+            <select>
+                <option th:selected="${order.selected == 1}">北京</option>
+                <option th:selected="${order.selected == 2}">天津</option>
+            </select>
+        </td>
+        <td>男：<input type="radio" th:checked="${order.sex == 1}"/>女：<input type="radio" th:checked="${order.sex == 2}"/> </td>
+    </tr>
+</table>
+</body>
+</html>
